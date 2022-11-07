@@ -9,6 +9,6 @@ match = re.findall(pattern, soup.get_text())
 for link in soup.find_all('a'):
     href = link.get('href')[7:]
                                 #link.get('href') выводит mailto:test@test.ru
-                                #и  чтобы убрать mailto: срезаем 7 символов
+                                #и  чтобы убрать mailto: срезаем 6 символов
     if href in match:
         print(href)
