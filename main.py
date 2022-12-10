@@ -12,3 +12,4 @@ soup = BeautifulSoup(open("storage.html"), 'html.parser')
 for link in soup.find_all('a'):
     link = link.get('href')[7:] #link.get('href') выводит mailto:test@test.ru и чтобы убрать mailto: срезаем 7 символов
     isValid(link)
+
