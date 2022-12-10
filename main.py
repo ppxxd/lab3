@@ -1,14 +1,14 @@
-# 11. Из документа HTML вывести все e-mail.
 import re
 from bs4 import BeautifulSoup
-pattern  = r"[A-Za-z0-9-_+]+(?:\.[a-zA-Z0-9_+-]+)*@[A-Za-z0-9-]+\.[A-Za-z0-9-.]+"
-HTMLFile = open("storage.html", "r")
+pattern  = r"[A-Za-z0-9]+(?:\.[a-zA-Z0-9]+)*@[A-Za-z0-9-]+\.[A-Za-z0-9-.]+"
 
-soup = BeautifulSoup(HTMLFile, 'lxml')
-match = re.findall(pattern, soup.get_text())
+def isValid(email):
+    if re.fullmatch(pattern, email):
+      print(f"Valid email : {email}")
+    else:
+      print(f"Invalid email : {email}")
+
+soup = BeautifulSoup(open("storage.html"), 'html.parser')
 for link in soup.find_all('a'):
-    href = link.get('href')[7:]
-                                #link.get('href') выводит mailto:test@test.ru
-                                #и  чтобы убрать mailto: срезаем 6 символов
-    if href in match:
-        print(href)
+    link = link.get('href')[7:] #link.get('href') выводит mailto:test@test.ru и чтобы убрать mailto: срезаем 7 символов
+    isValid(link)
